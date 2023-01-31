@@ -1,10 +1,9 @@
 import styles from "./AvailableMeals.module.css";
 
 import Card from "../../UI/Card/Card";
+import MealItem from "../MealItem/MealItem";
 
 import { DUMMY_MEALS } from "../dummy-meals";
-import MealItem from "../MealItem/MealItem";
-import Cart from "../../Cart/Cart";
 
 const AvailableMeals = () => {
   const mealsList = DUMMY_MEALS.map((meal) => (
