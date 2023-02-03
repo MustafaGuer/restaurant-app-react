@@ -4,7 +4,7 @@ import styles from "./AvailableMeals.module.css";
 
 import Card from "../../UI/Card/Card";
 import MealItem from "../MealItem/MealItem";
-import { url } from "../../../const/url";
+import { mealsUrl } from "../../../const/urls";
 
 // import { DUMMY_MEALS } from "../dummy-meals";
 
@@ -15,7 +15,7 @@ const AvailableMeals = () => {
 
   useEffect(() => {
     const fetchMeals = async () => {
-      const response = await fetch(url);
+      const response = await fetch(mealsUrl);
 
       if (!response.ok) {
         throw new Error("Something went wrong :(");

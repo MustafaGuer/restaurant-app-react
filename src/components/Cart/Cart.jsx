@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 
 import styles from "./Cart.module.css";
+import { ordersUrl } from "../../const/urls";
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -25,6 +26,17 @@ const Cart = (props) => {
 
   const orderHandler = () => {
     setIsCheckout(true);
+  };
+
+  const submitOrderHandler = (userData) => {
+    fetch(ordersUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: cartCtx.items,
+      }),
+    });
+    console.log(userData);
   };
 
   const cartItems = (
@@ -62,7 +74,9 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onClose} />}
+      {isCheckout && (
+        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+      )}
       {!isCheckout && modalActions}
     </Modal>
   );
